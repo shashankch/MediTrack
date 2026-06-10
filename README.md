@@ -155,6 +155,79 @@ Appointments per doctor: {Dr. Smith (D001)=1}
 - **Patterns**: Observer for notifications, Factory for bills, Strategy for billing.
 - **Data**: In-memory with CSV persistence.
 
+### System Class Diagram
+
+```mermaid
+classDiagram
+    class Main {
+        +main(args: String[])
+    }
+    class PatientService {
+        <<interface>>
+        +addPatient()
+        +updatePatient()
+        +deletePatient()
+        +getPatient()
+    }
+    class DoctorService {
+        <<interface>>
+        +addDoctor()
+        +updateDoctor()
+        +deleteDoctor()
+        +getDoctor()
+    }
+    class AppointmentService {
+        <<interface>>
+        +createAppointment()
+        +cancelAppointment()
+        +getAppointment()
+    }
+    class BillingService {
+        <<interface>>
+        +generateStandardBill()
+        +generateDiscountBill()
+    }
+    class Subject {
+        <<interface>>
+        +addObserver()
+        +notifyObservers()
+    }
+    class Observer {
+        <<interface>>
+        +update()
+    }
+    class SearchService {
+        +globalSearch()
+    }
+
+    Main --> PatientService
+    Main --> DoctorService
+    Main --> AppointmentService
+    Main --> BillingService
+    Main --> SearchService
+
+    AppointmentServiceImpl ..|> AppointmentService
+    AppointmentServiceImpl --> DoctorService
+    AppointmentServiceImpl --> PatientService
+    AppointmentServiceImpl --> Subject
+
+    BillingServiceImpl ..|> BillingService
+    BillingServiceImpl --> AppointmentService
+    BillingServiceImpl --> DoctorService
+    BillingServiceImpl --> BillFactory
+
+    NotificationServiceImpl ..|> Subject
+    NotificationServiceImpl --> Observer : notifies
+    AppointmentObserver ..|> Observer
+
+    PatientServiceImpl ..|> PatientService
+    DoctorServiceImpl ..|> DoctorService
+
+    PatientServiceImpl --> DataStore~Patient~
+    DoctorServiceImpl --> DataStore~Doctor~
+    AppointmentServiceImpl --> DataStore~Appointment~
+```
+
 ## Documentation
 
 - [Setup Instructions](docs/Setup_Instructions.md)
