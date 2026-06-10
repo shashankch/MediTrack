@@ -31,10 +31,10 @@ MediTrack is a Java-based modular application for managing clinic appointments, 
 javac -d out $(find src -name "*.java")
 
 # Run without data
-java -cp out com.airtribe.meditrack.Main
+java -cp out com.health.meditrack.Main
 
 # Run with CSV data loading
-java -cp out com.airtribe.meditrack.Main --loadData
+java -cp out com.health.meditrack.Main --loadData
 ```
 
 ## Usage
@@ -55,7 +55,7 @@ The application provides a menu-driven interface:
 Run the test suite:
 
 ```bash
-java -cp out com.airtribe.meditrack.test.TestRunner
+java -cp out com.health.meditrack.test.TestRunner
 ```
 
 ## Demo Instructions
@@ -166,7 +166,7 @@ Appointments per doctor: {Dr. Smith (D001)=1}
 To generate HTML documentation:
 
 ```bash
-javadoc -d docs/javadoc -sourcepath src -subpackages com.airtribe.meditrack
+javadoc -d docs/javadoc -sourcepath src -subpackages com.health.meditrack
 ```
 
 Open `docs/javadoc/index.html` in a browser.

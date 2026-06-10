@@ -70,13 +70,13 @@ javac -d out $(find src -name "*.java")
 ### Step 6: Run the Application
 
 ```
-java -cp out com.airtribe.meditrack.Main
+java -cp out com.health.meditrack.Main
 ```
 
 For loading CSV data, run with arguments:
 
 ```
-java -cp out com.airtribe.meditrack.Main --loadData
+java -cp out com.health.meditrack.Main --loadData
 ```
 
 ### Troubleshooting
